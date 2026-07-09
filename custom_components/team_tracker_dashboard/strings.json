@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Team Tracker Dashboard einrichten",
-        "description": "Wähle den vorhandenen Team-Tracker-Sensor aus, dessen Werte aufbereitet werden sollen.",
+        "description": "Es werden nur vorhandene Sensoren angezeigt, die wie Team-Tracker-Sensoren aussehen.",
         "data": {
           "source_entity": "Team-Tracker-Sensor",
           "display_name": "Anzeigename"
@@ -22,7 +22,7 @@
     "step": {
       "init": {
         "title": "Team Tracker Dashboard Optionen",
-        "description": "Passe den Quell-Sensor oder den Anzeigenamen an.",
+        "description": "Passe den Quell-Sensor oder den Anzeigenamen an. In der Auswahl erscheinen nur passende Team-Tracker-Sensoren.",
         "data": {
           "source_entity": "Team-Tracker-Sensor",
           "display_name": "Anzeigename"

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1
+
+- The source selector now only lists sensors that look like Team Tracker sensors.
+- Removed the Home Assistant helper integration hint from the manifest.
+- Renamed the device model from "Team Tracker Helper" to "Team Tracker Dashboard".
+
 ## 0.1.0
 
 - Initial release

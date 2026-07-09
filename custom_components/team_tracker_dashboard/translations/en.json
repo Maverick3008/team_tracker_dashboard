@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Set up Team Tracker Dashboard",
-        "description": "Select the existing Team Tracker sensor whose values should be formatted into dashboard-friendly sensors.",
+        "description": "Only existing sensors that look like Team Tracker sensors are shown.",
         "data": {
           "source_entity": "Team Tracker sensor",
           "display_name": "Display name"
@@ -22,7 +22,7 @@
     "step": {
       "init": {
         "title": "Team Tracker Dashboard options",
-        "description": "Change the source sensor or display name.",
+        "description": "Change the source sensor or display name. Only matching Team Tracker sensors are shown in the selection.",
         "data": {
           "source_entity": "Team Tracker sensor",
           "display_name": "Display name"

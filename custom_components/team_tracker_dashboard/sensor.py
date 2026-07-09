@@ -408,7 +408,7 @@ class TeamTrackerDashboardSensor(SensorEntity):
             "identifiers": {(DOMAIN, self._entry.entry_id)},
             "name": self._display_name,
             "manufacturer": "Team Tracker Dashboard",
-            "model": "Team Tracker Helper",
+            "model": "Team Tracker Dashboard",
         }
         event_url = _attr(self.hass, self._source_entity, "event_url")
         if event_url:
