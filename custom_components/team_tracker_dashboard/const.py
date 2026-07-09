@@ -6,7 +6,7 @@ from homeassistant.const import Platform
 
 DOMAIN = "team_tracker_dashboard"
 NAME = "Team Tracker Dashboard"
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 CONF_SOURCE_ENTITY = "source_entity"
 CONF_DISPLAY_NAME = "display_name"

@@ -1,8 +1,14 @@
 # Changelog
 
+## 1.0.1
+
+- Bumped integration version to 1.0.1.
+- Kept the updated brand logo and icon for the GitHub/HACS release package.
+
 ## 1.0.0
 
 - Added original, rights-safe brand images (`brand`, `icon`, and `logo`).
+- Replaced the placeholder artwork with the selected green football-field logo/icon design.
 - Added new sensor `Anstoß in Tagen` / kickoff days based on the Team Tracker `date` attribute.
 - The kickoff-days sensor refreshes hourly so the day count stays current.
 - Updated manifest and constants to version 1.0.0.
