@@ -1,0 +1,37 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Team Tracker Dashboard einrichten",
+        "description": "Wähle den vorhandenen Team-Tracker-Sensor aus, dessen Werte aufbereitet werden sollen.",
+        "data": {
+          "source_entity": "Team-Tracker-Sensor",
+          "display_name": "Anzeigename"
+        }
+      }
+    },
+    "error": {
+      "entity_not_found": "Die ausgewählte Entität wurde nicht gefunden.",
+      "not_team_tracker": "Die ausgewählte Entität sieht nicht wie ein Team-Tracker-Sensor aus. Bitte wähle einen Sensor mit Attributen wie team_name, opponent_name oder event_name."
+    },
+    "abort": {
+      "already_configured": "Dieser Team-Tracker-Sensor ist bereits eingerichtet."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Team Tracker Dashboard Optionen",
+        "description": "Passe den Quell-Sensor oder den Anzeigenamen an.",
+        "data": {
+          "source_entity": "Team-Tracker-Sensor",
+          "display_name": "Anzeigename"
+        }
+      }
+    },
+    "error": {
+      "entity_not_found": "Die ausgewählte Entität wurde nicht gefunden.",
+      "not_team_tracker": "Die ausgewählte Entität sieht nicht wie ein Team-Tracker-Sensor aus."
+    }
+  }
+}

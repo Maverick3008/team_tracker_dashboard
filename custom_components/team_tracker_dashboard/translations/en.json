@@ -1,0 +1,37 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Team Tracker Dashboard",
+        "description": "Select the existing Team Tracker sensor whose values should be formatted into dashboard-friendly sensors.",
+        "data": {
+          "source_entity": "Team Tracker sensor",
+          "display_name": "Display name"
+        }
+      }
+    },
+    "error": {
+      "entity_not_found": "The selected entity was not found.",
+      "not_team_tracker": "The selected entity does not look like a Team Tracker sensor. Please select a sensor with attributes like team_name, opponent_name, or event_name."
+    },
+    "abort": {
+      "already_configured": "This Team Tracker sensor is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Team Tracker Dashboard options",
+        "description": "Change the source sensor or display name.",
+        "data": {
+          "source_entity": "Team Tracker sensor",
+          "display_name": "Display name"
+        }
+      }
+    },
+    "error": {
+      "entity_not_found": "The selected entity was not found.",
+      "not_team_tracker": "The selected entity does not look like a Team Tracker sensor."
+    }
+  }
+}
