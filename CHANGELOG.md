@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+- Added Home Assistant local brand images in `custom_components/team_tracker_dashboard/brand/`.
+- This fixes the missing integration icon in Home Assistant 2026.3 and newer.
+- Kept root-level `icon.png` and `logo.png` for repository/HACS visibility.
+
 ## 1.0.1
 
 - Bumped integration version to 1.0.1.
