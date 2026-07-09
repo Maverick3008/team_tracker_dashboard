@@ -1,5 +1,7 @@
 # Team Tracker Dashboard
 
+![Team Tracker Dashboard Brand](images/team_tracker_dashboard_brand.png)
+
 Eine Home-Assistant-Custom-Integration, die vorhandene Team-Tracker-Sensoren ausliest und daraus übersichtliche, dashboardfreundliche Sensoren erstellt.
 
 Die Integration fragt ESPN nicht selbst ab. Sie nutzt den bereits vorhandenen Team-Tracker-Sensor als Datenquelle und bereitet dessen State und Attribute auf.
@@ -11,7 +13,7 @@ Die Integration fragt ESPN nicht selbst ab. Sie nutzt den bereits vorhandenen Te
 - mehrere Teams möglich, indem du die Integration mehrfach hinzufügst
 - deutscher Config Flow
 - Hauptsensor mit allen Original-Attributen des Team-Tracker-Sensors
-- eigene Sensoren für Gegner, Anstoß, Stadion, Ergebnis, Liga, Logos, Spielzeit, Schüsse usw.
+- eigene Sensoren für Gegner, Anstoß, Anstoß in Tagen, Stadion, Ergebnis, Liga, Logos, Spielzeit, Schüsse usw.
 - automatische Aktualisierung, sobald sich der Quell-Sensor ändert
 - HACS-fähige Ordnerstruktur
 
@@ -24,6 +26,7 @@ Bei Anzeigename `BVB` entstehen zum Beispiel:
 - `sensor.bvb_gegner`
 - `sensor.bvb_anstoss`
 - `sensor.bvb_anstoss_in`
+- `sensor.bvb_anstoss_in_tagen`
 - `sensor.bvb_stadion`
 - `sensor.bvb_ort`
 - `sensor.bvb_ergebnis`
@@ -89,7 +92,7 @@ content: |
 type: custom:mushroom-template-card
 primary: "{{ states('sensor.bvb_naechstes_spiel') }}"
 secondary: >-
-  {{ states('sensor.bvb_status') }} · {{ states('sensor.bvb_stadion') }} · {{ states('sensor.bvb_anstoss_in') }}
+  {{ states('sensor.bvb_status') }} · in {{ states('sensor.bvb_anstoss_in_tagen') }} Tagen · {{ states('sensor.bvb_stadion') }}
 icon: mdi:soccer
 entity: sensor.bvb_naechstes_spiel
 ```
@@ -110,6 +113,10 @@ action:
         {{ states('sensor.bvb_stadion') }}.
 mode: single
 ```
+
+## Brand-Bilder
+
+Dieses Repository enthält eigene, selbst erstellte Brand-Bilder in `images/` und `custom_components/team_tracker_dashboard/`. Sie verwenden keine Vereinslogos, ESPN-Grafiken oder geschützten Liga-Assets.
 
 ## Hinweise
 

@@ -4,14 +4,19 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Any
 
-from homeassistant.components.sensor import SensorDeviceClass, SensorEntity, SensorEntityDescription
+from homeassistant.components.sensor import (
+    SensorDeviceClass,
+    SensorEntity,
+    SensorEntityDescription,
+    SensorStateClass,
+)
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import STATE_UNAVAILABLE, STATE_UNKNOWN
+from homeassistant.const import STATE_UNAVAILABLE, STATE_UNKNOWN, UnitOfTime
 from homeassistant.core import Event, HomeAssistant, callback
-from homeassistant.helpers.event import async_track_state_change_event
+from homeassistant.helpers.event import async_track_state_change_event, async_track_time_interval
 from homeassistant.util import dt as dt_util
 
 from .const import CONF_DISPLAY_NAME, CONF_SOURCE_ENTITY, DOMAIN
@@ -173,6 +178,22 @@ def _timestamp_attr(attr_name: str) -> Callable[[HomeAssistant, str], Any]:
     return _value
 
 
+def _kickoff_days(hass: HomeAssistant, source_entity: str) -> int | None:
+    """Return full local calendar days until kickoff.
+
+    The value is based on the source entity's ``date`` attribute and the
+    Home Assistant local date. Past events return 0 instead of negative days.
+    """
+    kickoff = _parse_datetime(_attr(hass, source_entity, "date"))
+    if kickoff is None:
+        return None
+
+    local_kickoff = dt_util.as_local(kickoff)
+    today = dt_util.now().date()
+    days = (local_kickoff.date() - today).days
+    return max(days, 0)
+
+
 SENSOR_DESCRIPTIONS: tuple[TeamTrackerDashboardSensorDescription, ...] = (
     TeamTrackerDashboardSensorDescription(
         key="next_event",
@@ -205,6 +226,16 @@ SENSOR_DESCRIPTIONS: tuple[TeamTrackerDashboardSensorDescription, ...] = (
         name="Anstoß in",
         icon="mdi:timer-outline",
         value_fn=lambda hass, source_entity: _attr(hass, source_entity, "kickoff_in"),
+    ),
+    TeamTrackerDashboardSensorDescription(
+        key="kickoff_days",
+        name="Anstoß in Tagen",
+        icon="mdi:calendar-clock",
+        device_class=SensorDeviceClass.DURATION,
+        native_unit_of_measurement=UnitOfTime.DAYS,
+        state_class=SensorStateClass.MEASUREMENT,
+        suggested_display_precision=0,
+        value_fn=_kickoff_days,
     ),
     TeamTrackerDashboardSensorDescription(
         key="venue",
@@ -368,10 +399,23 @@ class TeamTrackerDashboardSensor(SensorEntity):
                 self._async_source_changed,
             )
         )
+        if self.entity_description.key == "kickoff_days":
+            self.async_on_remove(
+                async_track_time_interval(
+                    self.hass,
+                    self._async_time_changed,
+                    timedelta(hours=1),
+                )
+            )
 
     @callback
     def _async_source_changed(self, event: Event) -> None:
         """Handle source entity changes."""
+        self.async_write_ha_state()
+
+    @callback
+    def _async_time_changed(self, now: datetime) -> None:
+        """Refresh time-dependent sensors."""
         self.async_write_ha_state()
 
     @property

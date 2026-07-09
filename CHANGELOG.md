@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0
+
+- Added original, rights-safe brand images (`brand`, `icon`, and `logo`).
+- Added new sensor `Anstoß in Tagen` / kickoff days based on the Team Tracker `date` attribute.
+- The kickoff-days sensor refreshes hourly so the day count stays current.
+- Updated manifest and constants to version 1.0.0.
+
 ## 0.1.1
 
 - The source selector now only lists sensors that look like Team Tracker sensors.

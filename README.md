@@ -1,5 +1,7 @@
 # Team Tracker Dashboard
 
+![Team Tracker Dashboard brand](images/team_tracker_dashboard_brand.png)
+
 A Home Assistant custom integration that reads existing Team Tracker sensors and creates clean, dashboard-friendly sensors from their state and attributes.
 
 This integration does not query ESPN directly. It uses your existing Team Tracker sensor as the source and formats its values for dashboards, automations, and notifications.
@@ -11,7 +13,7 @@ This integration does not query ESPN directly. It uses your existing Team Tracke
 - Add multiple teams by adding the integration multiple times
 - German and English setup texts
 - Main sensor with all original Team Tracker attributes
-- Dedicated sensors for opponent, kickoff, venue, result, league, logos, game clock, shots, and more
+- Dedicated sensors for opponent, kickoff, kickoff days, venue, result, league, logos, game clock, shots, and more
 - Updates automatically when the source entity changes
 - HACS-ready structure
 
@@ -24,6 +26,7 @@ With display name `BVB`, examples are:
 - `sensor.bvb_gegner`
 - `sensor.bvb_anstoss`
 - `sensor.bvb_anstoss_in`
+- `sensor.bvb_anstoss_in_tagen`
 - `sensor.bvb_stadion`
 - `sensor.bvb_ort`
 - `sensor.bvb_ergebnis`
@@ -89,7 +92,7 @@ content: |
 type: custom:mushroom-template-card
 primary: "{{ states('sensor.bvb_naechstes_spiel') }}"
 secondary: >-
-  {{ states('sensor.bvb_status') }} · {{ states('sensor.bvb_stadion') }} · {{ states('sensor.bvb_anstoss_in') }}
+  {{ states('sensor.bvb_status') }} · in {{ states('sensor.bvb_anstoss_in_tagen') }} days · {{ states('sensor.bvb_stadion') }}
 icon: mdi:soccer
 entity: sensor.bvb_naechstes_spiel
 ```
@@ -110,6 +113,10 @@ action:
         {{ states('sensor.bvb_stadion') }}.
 mode: single
 ```
+
+## Brand assets
+
+This repository includes original, self-created brand images in `images/` and `custom_components/team_tracker_dashboard/`. They do not use club logos, ESPN artwork, or protected league assets.
 
 ## Notes
 
